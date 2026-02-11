@@ -50,6 +50,29 @@ To rebuild the EXE:
 npm run build:launcher
 ```
 
+## Deploy to GitHub Pages
+
+This repository includes GitHub Actions workflow:
+
+`.github/workflows/deploy-pages.yml`
+
+What it does:
+
+- builds Angular from `frontend/`
+- deploys static files to GitHub Pages when you push to `main`
+
+Important:
+
+- GitHub Pages cannot run your Node.js backend.
+- The frontend is configured to load `frontend/src/assets/portfolio-data.json` on GitHub Pages.
+
+After pushing to GitHub:
+
+1. Go to repository `Settings` -> `Pages`
+2. Set `Source` to `GitHub Actions`
+3. Wait for workflow `Deploy Portfolio to GitHub Pages` to finish
+4. Open: `https://flukekazo55.github.io/portfolio/`
+
 ## Update portfolio content
 
 Edit:
