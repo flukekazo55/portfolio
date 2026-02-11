@@ -30,6 +30,7 @@ export interface Skills {
 
 export interface Profile {
   name: string;
+  photo?: string;
   role: string;
   tagline: string;
   summary: string;

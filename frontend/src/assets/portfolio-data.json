@@ -1,6 +1,7 @@
 {
   "profile": {
     "name": "Chutipong Jarernsawat",
+    "photo": "assets/profile.jpg",
     "role": "Software Engineer (Fullstack)",
     "tagline": "Building scalable business platforms with modern DevOps and cloud-native workflows.",
     "summary": "Fullstack Developer with 5+ years of experience delivering scalable web applications and backend services using Angular, NestJS, C#, and Golang. Experienced in event-driven integration with Confluent Kafka (designing and maintaining producers/consumers across multiple topics) and building reliable delivery pipelines with GitLab CI, Docker, Jenkins, and Argo CD for GitOps-based Kubernetes deployments. Focused on performance optimization, seamless frontend-backend collaboration, and solving complex problems in agile environments.",

@@ -5,6 +5,9 @@
 
   <header class="hero reveal">
     <div class="hero__content">
+      <div class="hero__photo-wrap" *ngIf="data.profile.photo">
+        <img class="hero__photo" [src]="data.profile.photo" [alt]="data.profile.name + ' profile photo'" />
+      </div>
       <p class="eyebrow">Software Engineer (Fullstack)</p>
       <h1>{{ data.profile.name }}</h1>
       <h2>{{ data.profile.role }}</h2>
