@@ -5,7 +5,7 @@
 
   <header class="hero reveal">
     <div class="hero__content">
-      <p class="eyebrow">Angular + Node.js Fullstack Portfolio</p>
+      <p class="eyebrow">Software Engineer (Fullstack)</p>
       <h1>{{ data.profile.name }}</h1>
       <h2>{{ data.profile.role }}</h2>
       <p class="tagline">{{ data.profile.tagline }}</p>
@@ -49,9 +49,16 @@
         </article>
 
         <article class="skill-column">
-          <h4>Languages</h4>
-          <ul>
-            <li *ngFor="let language of data.skills.programming.languages">{{ language }}</li>
+          <h4>Languages & Tools</h4>
+          <ul class="language-detail-list">
+            <li *ngFor="let detail of data.skills.programming.languageDetails">
+              <div class="language-detail">
+                <span class="language-name">{{ detail.language }}</span>
+                <div class="language-tools">
+                  <span class="tool-chip" *ngFor="let tool of detail.tools">{{ tool }}</span>
+                </div>
+              </div>
+            </li>
           </ul>
         </article>
 
@@ -63,7 +70,7 @@
         </article>
 
         <article class="skill-column">
-          <h4>Tools</h4>
+          <h4>Other</h4>
           <ul>
             <li *ngFor="let tool of data.skills.programming.others">{{ tool }}</li>
           </ul>

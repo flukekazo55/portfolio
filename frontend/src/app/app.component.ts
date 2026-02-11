@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
         this.loading = false;
       },
       error: () => {
-        this.error = 'Unable to load portfolio data. Please start the backend API server.';
+        this.error = 'Unable to load portfolio data. Please check the data file.';
         this.loading = false;
       }
     });

@@ -1,13 +1,12 @@
-# Portfolio Website (Angular + Node.js)
+# Portfolio Website (Angular)
 
-This project is a fullstack portfolio app for **Chutipong Jarernsawat**:
+This project is a portfolio app for **Chutipong Jarernsawat**:
 
 - `frontend/`: Angular app (UI)
-- `backend/`: Node.js + Express API (`/api/portfolio`)
 
 ## Run in development
 
-Install all dependencies:
+Install dependencies:
 
 ```bash
 npm run install:all
@@ -19,12 +18,8 @@ Then start:
 npm run dev
 ```
 
-This starts:
-
-- Angular dev server: `http://localhost:4200`
-- Node API server: `http://localhost:3000`
-
-Angular uses `frontend/proxy.conf.json` so `/api/*` requests route to the backend.
+This starts the Angular dev server:
+`http://localhost:4200`
 
 ## Build frontend
 
@@ -32,7 +27,7 @@ Angular uses `frontend/proxy.conf.json` so `/api/*` requests route to the backen
 npm run build
 ```
 
-After build, the backend can serve the compiled Angular files from:
+Build output is in:
 `frontend/dist/frontend`.
 
 ## Windows launcher EXE
@@ -41,7 +36,7 @@ A launcher executable is available at:
 
 `launcher/dist/RunPortfolio.exe`
 
-Double-click it to open a terminal and run both frontend and backend (`npm run dev`).
+Double-click it to open a terminal and run the frontend (`npm run dev`).
 This EXE is built from `launcher/RunPortfolio.bat` (no C# launcher).
 
 To rebuild the EXE:
@@ -63,8 +58,7 @@ What it does:
 
 Important:
 
-- GitHub Pages cannot run your Node.js backend.
-- The frontend is configured to load `frontend/src/assets/portfolio-data.json` on GitHub Pages.
+- The frontend uses `frontend/src/assets/portfolio-data.json` for data.
 
 After pushing to GitHub:
 
@@ -78,4 +72,4 @@ After pushing to GitHub:
 
 Edit:
 
-`backend/src/data/portfolio-data.js`
+`frontend/src/assets/portfolio-data.json`

@@ -13,10 +13,16 @@ export interface EducationEntry {
   bullets: string[];
 }
 
+export interface LanguageDetail {
+  language: string;
+  tools: string[];
+}
+
 export interface Skills {
   personal: string[];
   programming: {
     languages: string[];
+    languageDetails: LanguageDetail[];
     frameworks: string[];
     others: string[];
   };

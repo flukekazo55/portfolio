@@ -15,5 +15,5 @@ if not exist "%PROJECT_ROOT%\package.json" (
 
 cd /d "%PROJECT_ROOT%"
 title Portfolio Dev Server
-echo Starting frontend and backend...
-call npm run dev
+echo Starting frontend only...
+call npm --prefix frontend run start

@@ -203,6 +203,41 @@ h4 {
   margin-bottom: 0.65rem;
 }
 
+.language-detail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.language-detail {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.language-name {
+  font-weight: 600;
+  color: #15364b;
+}
+
+.language-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tool-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(27, 60, 79, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.82rem;
+  color: #214558;
+}
+
 .timeline {
   margin-top: 0.8rem;
   display: grid;

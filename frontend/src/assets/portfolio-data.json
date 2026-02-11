@@ -1,13 +1,13 @@
 {
   "profile": {
     "name": "Chutipong Jarernsawat",
-    "role": "C#.NET / Angular Developer (Fullstack)",
+    "role": "Software Engineer (Fullstack)",
     "tagline": "Building scalable business platforms with modern DevOps and cloud-native workflows.",
-    "summary": "Fullstack developer with 5+ years of experience delivering dynamic and responsive web applications using Angular, NestJS, C#, Golang, and modern CI/CD practices. Skilled at connecting frontend and backend systems, improving user experience, and optimizing delivery pipelines with Docker and Jenkins.",
+    "summary": "Fullstack Developer with 5+ years of experience delivering scalable web applications and backend services using Angular, NestJS, C#, and Golang. Experienced in event-driven integration with Confluent Kafka (designing and maintaining producers/consumers across multiple topics) and building reliable delivery pipelines with GitLab CI, Docker, Jenkins, and Argo CD for GitOps-based Kubernetes deployments. Focused on performance optimization, seamless frontend-backend collaboration, and solving complex problems in agile environments.",
     "location": "Bangkok, Thailand",
     "email": "chutipong.jarernsawat@gmail.com",
     "phone": "(+66) 85 095 1898",
-    "linkedin": "https://www.linkedin.com/in/chutipong"
+    "linkedin": "https://www.linkedin.com/in/chutipong-jarernsawat-a47554222/"
   },
   "skills": {
     "personal": [
@@ -21,15 +21,78 @@
         "CSS",
         "JavaScript",
         "TypeScript",
-        "SQL",
+        "Database (SQL, NoSQL)",
         "C#",
         "Golang"
       ],
+      "languageDetails": [
+        {
+          "language": "HTML",
+          "tools": [
+            "Angular Templates",
+            "Responsive UI"
+          ]
+        },
+        {
+          "language": "CSS/SCSS",
+          "tools": [
+            "SCSS",
+            "Flexbox",
+            "Grid Layout"
+          ]
+        },
+        {
+          "language": "JavaScript",
+          "tools": [
+            "Node.js",
+            "REST APIs"
+          ]
+        },
+        {
+          "language": "TypeScript",
+          "tools": [
+            "Angular",
+            "NestJS"
+          ]
+        },
+        {
+          "language": "Database (SQL, NoSQL)",
+          "tools": [
+            "SQL Server",
+            "PostgreSQL",
+            "MongoDB"
+          ]
+        },
+        {
+          "language": "C#",
+          "tools": [
+            "ASP.NET Core",
+            ".NET 6",
+            "Xamarin"
+          ]
+        },
+        {
+          "language": "Golang",
+          "tools": [
+            "Confluent Kafka"
+          ]
+        },
+        {
+          "language": "DevOps",
+          "tools": [
+            "Docker",
+            "Kubernetes",
+            "Jenkins",
+            "Argo CD"
+          ]
+        }
+      ],
       "frameworks": [
         "Agile",
-        "Angular",
-        "NestJS",
-        "ASP.NET (C#)"
+        "Angular (TypeScript)",
+        "NestJS (TypeScript)",
+        "ASP.NET (C#)",
+        ".NET (C#)"
       ],
       "others": [
         "Jenkins",
@@ -43,7 +106,7 @@
   },
   "experience": [
     {
-      "title": "C#.NET / Angular Developer (Fullstack)",
+      "title": "Full Stack Developer (Mid-Level)",
       "company": "Thai Beverage Public Company Limited",
       "period": "July 2025 - Present",
       "bullets": [
