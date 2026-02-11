@@ -42,6 +42,7 @@ A launcher executable is available at:
 `launcher/dist/RunPortfolio.exe`
 
 Double-click it to open a terminal and run both frontend and backend (`npm run dev`).
+This EXE is built from `launcher/RunPortfolio.bat` (no C# launcher).
 
 To rebuild the EXE:
 
