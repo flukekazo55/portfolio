@@ -31,8 +31,10 @@ const portfolioData = {
       company: "Thai Beverage Public Company Limited",
       period: "July 2025 - Present",
       bullets: [
-        "Maintain and enhance a logistics web application for sales and warehouse operations using C#, Golang, and Angular.",
-        "Manage and oversee GitOps workflows through GitLab Pipeline in collaboration with Docker, Kubernetes, Harbor, and Argo CD."
+        "ระบบจัดการข้อมูล Sale Order สินค้าต่างๆ ด้วย Angular และ Golang, .NET 6",
+        "ระบบจัดการข้อมูลใบขนสินค้า ด้วย Angular + Golang",
+        "จัดการการส่งข้อมูลผ่าน Confluent Kafka ทั้ง Consume & Produce ผ่าน Topic ต่างๆ",
+        "จัดทำและแก้ไข GitLab CI Pipeline ในส่วนของ Path CI/CD ผ่าน k8s, Docker, Harbor, Argo CD"
       ]
     },
     {

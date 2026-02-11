@@ -218,17 +218,6 @@ h4 {
   animation-delay: calc(var(--order, 0) * 100ms);
 }
 
-.timeline article::before {
-  content: "";
-  position: absolute;
-  left: 0.7rem;
-  top: 1.15rem;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #e75a45;
-}
-
 .timeline-company {
   margin: 0.2rem 0 0;
   font-weight: 600;
