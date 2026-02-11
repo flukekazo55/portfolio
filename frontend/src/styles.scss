@@ -1,0 +1,29 @@
+:root {
+  --bg-base: #f5faf7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(170deg, #f7fbfa 0%, #eef7f5 44%, #eff3f8 100%);
+  color: #1f3548;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Sora", "Trebuchet MS", sans-serif;
+}

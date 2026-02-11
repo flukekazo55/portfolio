@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Fullstack portfolio app (Angular + Node.js)",
+  "main": "backend/src/server.js",
+  "scripts": {
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run start\"",
+    "build": "npm --prefix frontend run build",
+    "build:launcher": "dotnet publish launcher/PortfolioLauncher.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o launcher/dist",
+    "start": "npm --prefix backend run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flukekazo55/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flukekazo55/portfolio/issues"
+  },
+  "homepage": "https://github.com/flukekazo55/portfolio#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

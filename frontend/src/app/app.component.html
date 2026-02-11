@@ -1,0 +1,138 @@
+<div class="portfolio-shell" *ngIf="portfolio as data; else stateBlock">
+  <div class="bg-orb orb-coral"></div>
+  <div class="bg-orb orb-mint"></div>
+  <div class="bg-grid"></div>
+
+  <header class="hero reveal">
+    <div class="hero__content">
+      <p class="eyebrow">Angular + Node.js Fullstack Portfolio</p>
+      <h1>{{ data.profile.name }}</h1>
+      <h2>{{ data.profile.role }}</h2>
+      <p class="tagline">{{ data.profile.tagline }}</p>
+
+      <div class="hero__meta">
+        <div class="meta-item">
+          <span class="meta-label">Experience</span>
+          <span class="meta-value">{{ experienceYears }}+ years</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">{{ data.profile.location }}</span>
+        </div>
+      </div>
+
+      <div class="contact-chips">
+        <a [href]="'mailto:' + data.profile.email">{{ data.profile.email }}</a>
+        <a [href]="'tel:' + data.profile.phone">{{ data.profile.phone }}</a>
+        <a [href]="data.profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <aside class="hero__card">
+      <p class="card-label">Profile Summary</p>
+      <p>{{ data.profile.summary }}</p>
+    </aside>
+  </header>
+
+  <main class="content">
+    <section class="panel reveal">
+      <div class="section-title">
+        <h3>Skills and Expertise</h3>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-column">
+          <h4>Personal Skills</h4>
+          <ul>
+            <li *ngFor="let skill of data.skills.personal">{{ skill }}</li>
+          </ul>
+        </article>
+
+        <article class="skill-column">
+          <h4>Languages</h4>
+          <ul>
+            <li *ngFor="let language of data.skills.programming.languages">{{ language }}</li>
+          </ul>
+        </article>
+
+        <article class="skill-column">
+          <h4>Frameworks and Methods</h4>
+          <ul>
+            <li *ngFor="let framework of data.skills.programming.frameworks">{{ framework }}</li>
+          </ul>
+        </article>
+
+        <article class="skill-column">
+          <h4>Tools</h4>
+          <ul>
+            <li *ngFor="let tool of data.skills.programming.others">{{ tool }}</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel reveal">
+      <div class="section-title">
+        <h3>Work Experience</h3>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item" *ngFor="let item of data.experience; let i = index" [style.--order]="i">
+          <h4>{{ item.title }}</h4>
+          <p class="timeline-company">{{ item.company }}</p>
+          <p class="timeline-period">{{ item.period }}</p>
+          <ul>
+            <li *ngFor="let point of item.bullets">{{ point }}</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="split-layout reveal">
+      <article class="panel">
+        <div class="section-title">
+          <h3>Internship</h3>
+        </div>
+        <div *ngFor="let item of data.internship">
+          <h4>{{ item.title }}</h4>
+          <p class="timeline-company">{{ item.company }}</p>
+          <p class="timeline-period">{{ item.period }}</p>
+          <ul>
+            <li *ngFor="let point of item.bullets">{{ point }}</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="section-title">
+          <h3>Education</h3>
+        </div>
+        <div *ngFor="let school of data.education">
+          <h4>{{ school.institution }}</h4>
+          <p class="timeline-company">{{ school.degree }}</p>
+          <p class="timeline-period">{{ school.period }} | GPA {{ school.gpa }}</p>
+          <ul>
+            <li *ngFor="let point of school.bullets">{{ point }}</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel reveal">
+      <div class="section-title">
+        <h3>Certificates</h3>
+      </div>
+      <div class="certificate-wall">
+        <span class="certificate-badge" *ngFor="let certificate of data.certificates; let i = index" [style.--order]="i">
+          {{ certificate }}
+        </span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<ng-template #stateBlock>
+  <div class="state-panel">
+    <p *ngIf="loading">Loading portfolio...</p>
+    <p *ngIf="!loading && error">{{ error }}</p>
+  </div>
+</ng-template>

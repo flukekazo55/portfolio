@@ -1,0 +1,103 @@
+const portfolioData = {
+  profile: {
+    name: "Chutipong Jarernsawat",
+    role: "C#.NET / Angular Developer (Fullstack)",
+    tagline: "Building scalable business platforms with modern DevOps and cloud-native workflows.",
+    summary:
+      "Fullstack developer with 4+ years of experience delivering dynamic and responsive web applications using Angular, NestJS, C#, Golang, and modern CI/CD practices. Skilled at connecting frontend and backend systems, improving user experience, and optimizing delivery pipelines with Docker and Jenkins.",
+    location: "Bangkok, Thailand",
+    email: "chutipong.jarernsawat@gmail.com",
+    phone: "(+66) 85 095 1898",
+    linkedin: "https://www.linkedin.com/in/chutipong"
+  },
+  skills: {
+    personal: ["Teamwork", "Adaptability", "Interpersonal communication"],
+    programming: {
+      languages: ["HTML", "CSS", "JavaScript", "TypeScript", "SQL", "C#", "Golang"],
+      frameworks: ["Agile", "Angular", "NestJS", "ASP.NET (C#)"],
+      others: [
+        "Jenkins",
+        "Kubernetes",
+        "Hyperledger Fabric",
+        "Linux commands",
+        "Version Control (Git)",
+        "Project Management (Jira)"
+      ]
+    }
+  },
+  experience: [
+    {
+      title: "C#.NET / Angular Developer (Fullstack)",
+      company: "Thai Beverage Public Company Limited",
+      period: "July 2025 - Present",
+      bullets: [
+        "Maintain and enhance a logistics web application for sales and warehouse operations using C#, Golang, and Angular.",
+        "Manage and oversee GitOps workflows through GitLab Pipeline in collaboration with Docker, Kubernetes, Harbor, and Argo CD."
+      ]
+    },
+    {
+      title: "Frontend Developer",
+      company: "MSC Sittipol Co., Ltd.",
+      period: "July 2023 - June 2025",
+      bullets: [
+        "Built a bank land asset management web system with Angular.",
+        "Built a gas station log management web system with Angular.",
+        "Built a bank business and customer document management web system with Angular."
+      ]
+    },
+    {
+      title: "Software Developer (Fullstack)",
+      company: "Sirisoft Public Company Limited",
+      period: "Jan 2022 - Jun 2023",
+      bullets: [
+        "Created a web platform for rubber trading data management using Angular and NestJS.",
+        "Managed and maintained Oracle Blockchain for rubber trading data workflows.",
+        "Developed CI/CD pipelines to validate source code and deploy with Docker, Kubernetes, Jenkins, Argo CD, and Red Hat tooling."
+      ]
+    },
+    {
+      title: "Software Developer (Fullstack)",
+      company: "Beko Thai Co., Ltd.",
+      period: "Apr 2021 - Jan 2022",
+      bullets: [
+        "Created an internal employee data management system with Angular and .NET Core 6.",
+        "Created an after-sales and product warranty management system with Angular and .NET Core 6.",
+        "Built an Android application for warehouse product counting and management with Xamarin."
+      ]
+    }
+  ],
+  internship: [
+    {
+      title: "System Administrator",
+      company: "ClickNext Co., Ltd.",
+      period: "Jul 2020 - Oct 2020",
+      bullets: [
+        "Managed servers using Terraform and Ansible with Docker, Kubernetes, GitLab, and ELK Stack.",
+        "Created Jenkins pipelines for CI/CD usage."
+      ]
+    }
+  ],
+  education: [
+    {
+      institution: "Burapha University",
+      degree: "Software Engineering",
+      period: "July 2017 - April 2021",
+      gpa: "3.78",
+      bullets: [
+        "Focused on teamwork alongside Agile software development processes.",
+        "Relevant coursework: Object-oriented Programming, Data Structures, Algorithms, and Database Development."
+      ]
+    }
+  ],
+  certificates: [
+    "JavaScript Certification",
+    "Problem Solving (Basic) Certificate",
+    "Angular (Basic) Certificate",
+    "Angular (Intermediate) Certificate",
+    "SQL (Basic) Certificate",
+    "SQL (Intermediate) Certificate",
+    "SQL (Advanced) Certificate"
+  ]
+};
+
+module.exports = portfolioData;
