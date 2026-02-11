@@ -47,10 +47,10 @@
       "company": "Thai Beverage Public Company Limited",
       "period": "July 2025 - Present",
       "bullets": [
-        "ระบบจัดการข้อมูล Sale Order สินค้าต่างๆ ด้วย Angular และ Golang, .NET 6",
-        "ระบบจัดการข้อมูลใบขนสินค้า ด้วย Angular + Golang",
-        "จัดการการส่งข้อมูลผ่าน Confluent Kafka ทั้ง Consume & Produce ผ่าน Topic ต่างๆ",
-        "จัดทำและแก้ไข GitLab CI Pipeline ในส่วนของ Path CI/CD ผ่าน k8s, Docker, Harbor, Argo CD"
+        "Built business systems on Angular (UI) with Golang / .NET 6 services for Sales Order processing and related product workflows.",
+        "Implemented shipping document management and service integrations using Golang APIs.",
+        "Operated Confluent Kafka pipelines (producer/consumer) for cross-service communication and data synchronization.",
+        "Maintained and optimized GitLab CI/CD for containerized deployments on Kubernetes using Docker, Harbor, and Argo CD."
       ]
     },
     {

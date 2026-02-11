@@ -4,7 +4,7 @@ const portfolioData = {
     role: "C#.NET / Angular Developer (Fullstack)",
     tagline: "Building scalable business platforms with modern DevOps and cloud-native workflows.",
     summary:
-      "Fullstack developer with 4+ years of experience delivering dynamic and responsive web applications using Angular, NestJS, C#, Golang, and modern CI/CD practices. Skilled at connecting frontend and backend systems, improving user experience, and optimizing delivery pipelines with Docker and Jenkins.",
+      "Fullstack developer with 5+ years of experience delivering dynamic and responsive web applications using Angular, NestJS, C#, Golang, and modern CI/CD practices. Skilled at connecting frontend and backend systems, improving user experience, and optimizing delivery pipelines with Docker and Jenkins.",
     location: "Bangkok, Thailand",
     email: "chutipong.jarernsawat@gmail.com",
     phone: "(+66) 85 095 1898",
