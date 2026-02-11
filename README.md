@@ -59,7 +59,7 @@ This repository includes GitHub Actions workflow:
 What it does:
 
 - builds Angular from `frontend/`
-- deploys static files to GitHub Pages when you push to `main`
+- deploys static files to `gh-pages` branch when you push to `main`
 
 Important:
 
@@ -69,8 +69,9 @@ Important:
 After pushing to GitHub:
 
 1. Go to repository `Settings` -> `Pages`
-2. Set `Source` to `GitHub Actions`
-3. Wait for workflow `Deploy Portfolio to GitHub Pages` to finish
+2. Set `Source` to `Deploy from a branch`
+3. Set branch to `gh-pages` and folder to `/ (root)`
+4. Wait for workflow `Deploy Portfolio to GitHub Pages` to finish
 4. Open: `https://flukekazo55.github.io/portfolio/`
 
 ## Update portfolio content
