@@ -4,10 +4,11 @@
   <div class="bg-grid"></div>
 
   <header class="hero reveal">
-    <div class="hero__content">
-      <div class="hero__photo-wrap" *ngIf="data.profile.photo">
-        <img class="hero__photo" [src]="data.profile.photo" [alt]="data.profile.name + ' profile photo'" />
-      </div>
+    <div
+      class="hero__content"
+      [class.hero__content--photo-bg]="data.profile.photo"
+      [style.--hero-bg-image]="data.profile.photo ? 'url(' + data.profile.photo + ')' : 'none'"
+    >
       <p class="eyebrow">Software Engineer (Fullstack)</p>
       <h1>{{ data.profile.name }}</h1>
       <h2>{{ data.profile.role }}</h2>
@@ -38,103 +39,205 @@
   </header>
 
   <main class="content">
-    <section class="panel reveal">
+    <section class="panel panel--book reveal">
       <div class="section-title">
+        <p class="section-kicker">Chapter 01</p>
         <h3>Skills and Expertise</h3>
       </div>
+      <div class="panel__body">
+        <div class="skills-grid">
+          <article class="skill-column">
+            <h4>Personal Skills</h4>
+            <ul>
+              <li *ngFor="let skill of data.skills.personal">{{ skill }}</li>
+            </ul>
+          </article>
 
-      <div class="skills-grid">
-        <article class="skill-column">
-          <h4>Personal Skills</h4>
-          <ul>
-            <li *ngFor="let skill of data.skills.personal">{{ skill }}</li>
-          </ul>
-        </article>
-
-        <article class="skill-column">
-          <h4>Languages & Tools</h4>
-          <ul class="language-detail-list">
-            <li *ngFor="let detail of data.skills.programming.languageDetails">
-              <div class="language-detail">
-                <span class="language-name">{{ detail.language }}</span>
-                <div class="language-tools">
-                  <span class="tool-chip" *ngFor="let tool of detail.tools">{{ tool }}</span>
+          <article class="skill-column">
+            <h4>Languages & Tools</h4>
+            <ul class="language-detail-list">
+              <li *ngFor="let detail of data.skills.programming.languageDetails">
+                <div class="language-detail">
+                  <span class="language-name">{{ detail.language }}</span>
+                  <div class="language-tools">
+                    <ng-container *ngFor="let tool of detail.tools">
+                      <span
+                        class="tool-chip"
+                        *ngIf="getToolVisual(tool) as visual"
+                        [style.--chip-tint]="visual.tint"
+                        [style.--chip-ring]="visual.ring"
+                        [style.--chip-glow]="visual.glow"
+                        [attr.title]="tool"
+                        [attr.aria-label]="tool"
+                      >
+                        <img
+                          *ngIf="visual.iconUrl; else chipTextFallback"
+                          class="tool-logo"
+                          [src]="visual.iconUrl"
+                          [alt]="tool + ' logo'"
+                          loading="lazy"
+                          (error)="onToolLogoError(tool)"
+                        />
+                        <ng-template #chipTextFallback>
+                          <span class="tool-fallback">{{ visual.fallback }}</span>
+                        </ng-template>
+                      </span>
+                    </ng-container>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
-        </article>
+              </li>
+            </ul>
+          </article>
 
-        <article class="skill-column">
-          <h4>Frameworks and Methods</h4>
-          <ul>
-            <li *ngFor="let framework of data.skills.programming.frameworks">{{ framework }}</li>
-          </ul>
-        </article>
+          <article class="skill-column">
+            <h4>Frameworks and Methods</h4>
+            <ul class="badge-list">
+              <li *ngFor="let framework of data.skills.programming.frameworks">
+                <span
+                  class="tool-chip"
+                  *ngIf="getToolVisual(framework) as visual"
+                  [style.--chip-tint]="visual.tint"
+                  [style.--chip-ring]="visual.ring"
+                  [style.--chip-glow]="visual.glow"
+                  [attr.title]="framework"
+                  [attr.aria-label]="framework"
+                >
+                  <img
+                    *ngIf="visual.iconUrl; else frameworkBadgeFallback"
+                    class="tool-logo"
+                    [src]="visual.iconUrl"
+                    [alt]="framework + ' logo'"
+                    loading="lazy"
+                    (error)="onToolLogoError(framework)"
+                  />
+                  <ng-template #frameworkBadgeFallback>
+                    <span class="tool-fallback">{{ visual.fallback }}</span>
+                  </ng-template>
+                </span>
+              </li>
+            </ul>
+          </article>
 
-        <article class="skill-column">
-          <h4>Other</h4>
-          <ul>
-            <li *ngFor="let tool of data.skills.programming.others">{{ tool }}</li>
-          </ul>
-        </article>
+          <article class="skill-column">
+            <h4>Other</h4>
+            <ul class="badge-list">
+              <li *ngFor="let tool of data.skills.programming.others">
+                <span
+                  class="tool-chip"
+                  *ngIf="getToolVisual(tool) as visual"
+                  [style.--chip-tint]="visual.tint"
+                  [style.--chip-ring]="visual.ring"
+                  [style.--chip-glow]="visual.glow"
+                  [attr.title]="tool"
+                  [attr.aria-label]="tool"
+                >
+                  <img
+                    *ngIf="visual.iconUrl; else otherBadgeFallback"
+                    class="tool-logo"
+                    [src]="visual.iconUrl"
+                    [alt]="tool + ' logo'"
+                    loading="lazy"
+                    (error)="onToolLogoError(tool)"
+                  />
+                  <ng-template #otherBadgeFallback>
+                    <span class="tool-fallback">{{ visual.fallback }}</span>
+                  </ng-template>
+                </span>
+              </li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="panel reveal">
+    <section class="panel panel--book reveal">
       <div class="section-title">
+        <p class="section-kicker">Chapter 02</p>
         <h3>Work Experience</h3>
       </div>
-      <div class="timeline">
-        <article *ngFor="let item of data.experience; let i = index" [style.--order]="i">
-          <h4>{{ item.title }}</h4>
-          <p class="timeline-company">{{ item.company }}</p>
-          <p class="timeline-period">{{ item.period }}</p>
-          <ul>
-            <li *ngFor="let point of item.bullets">{{ point }}</li>
-          </ul>
-        </article>
+      <div class="panel__body">
+        <div class="timeline">
+          <ng-container *ngFor="let item of data.experience; let i = index">
+            <article
+              *ngIf="getCompanyVisual(item.company) as companyVisual"
+              [style.--order]="i"
+              [style.--company-logo]="companyVisual.logoUrl ? 'url(' + companyVisual.logoUrl + ')' : 'none'"
+              [style.--company-tint]="companyVisual.tint"
+              [class.timeline-item--logo-bg]="companyVisual.logoUrl"
+            >
+              <h4>{{ item.title }}</h4>
+              <p class="timeline-company">{{ item.company }}</p>
+              <p class="timeline-period">{{ item.period }}</p>
+              <ul>
+                <li *ngFor="let point of item.bullets">{{ point }}</li>
+              </ul>
+            </article>
+          </ng-container>
+        </div>
       </div>
     </section>
 
-    <section class="split-layout reveal">
-      <article class="panel">
-        <div class="section-title">
-          <h3>Internship</h3>
-        </div>
-        <div *ngFor="let item of data.internship">
-          <h4>{{ item.title }}</h4>
-          <p class="timeline-company">{{ item.company }}</p>
-          <p class="timeline-period">{{ item.period }}</p>
-          <ul>
-            <li *ngFor="let point of item.bullets">{{ point }}</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="panel">
-        <div class="section-title">
-          <h3>Education</h3>
-        </div>
-        <div *ngFor="let school of data.education">
-          <h4>{{ school.institution }}</h4>
-          <p class="timeline-company">{{ school.degree }}</p>
-          <p class="timeline-period">{{ school.period }} | GPA {{ school.gpa }}</p>
-          <ul>
-            <li *ngFor="let point of school.bullets">{{ point }}</li>
-          </ul>
-        </div>
-      </article>
+    <section class="panel panel--book reveal">
+      <div class="section-title">
+        <p class="section-kicker">Chapter 03</p>
+        <h3>Internship</h3>
+      </div>
+      <div class="panel__body">
+        <ng-container *ngFor="let item of data.internship">
+          <div
+            class="panel-entry"
+            *ngIf="getCompanyVisual(item.company) as companyVisual"
+            [style.--company-logo]="companyVisual.logoUrl ? 'url(' + companyVisual.logoUrl + ')' : 'none'"
+            [style.--company-tint]="companyVisual.tint"
+            [class.panel-entry--logo-bg]="companyVisual.logoUrl"
+          >
+            <h4>{{ item.title }}</h4>
+            <p class="timeline-company">{{ item.company }}</p>
+            <p class="timeline-period">{{ item.period }}</p>
+            <ul>
+              <li *ngFor="let point of item.bullets">{{ point }}</li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
     </section>
 
-    <section class="panel reveal">
+    <section class="panel panel--book reveal">
       <div class="section-title">
+        <p class="section-kicker">Chapter 04</p>
+        <h3>Education</h3>
+      </div>
+      <div class="panel__body">
+        <ng-container *ngFor="let school of data.education">
+          <div
+            class="panel-entry"
+            *ngIf="getCompanyVisual(school.institution) as companyVisual"
+            [style.--company-logo]="companyVisual.logoUrl ? 'url(' + companyVisual.logoUrl + ')' : 'none'"
+            [style.--company-tint]="companyVisual.tint"
+            [class.panel-entry--logo-bg]="companyVisual.logoUrl"
+          >
+            <h4>{{ school.institution }}</h4>
+            <p class="timeline-company">{{ school.degree }}</p>
+            <p class="timeline-period">{{ school.period }} | GPA {{ school.gpa }}</p>
+            <ul>
+              <li *ngFor="let point of school.bullets">{{ point }}</li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="panel panel--book reveal">
+      <div class="section-title">
+        <p class="section-kicker">Chapter 05</p>
         <h3>Certificates</h3>
       </div>
-      <div class="certificate-wall">
-        <span class="certificate-badge" *ngFor="let certificate of data.certificates; let i = index" [style.--order]="i">
-          {{ certificate }}
-        </span>
+      <div class="panel__body">
+        <div class="certificate-wall">
+          <span class="certificate-badge" *ngFor="let certificate of data.certificates; let i = index" [style.--order]="i">
+            {{ certificate }}
+          </span>
+        </div>
       </div>
     </section>
   </main>
