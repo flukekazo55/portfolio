@@ -37,9 +37,11 @@ jobs:
       - name: Build Angular for Pages
         run: npm run build:pages
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to release branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: frontend/dist/frontend
-          force_orphan: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release
+          folder: frontend/dist/frontend
+          clean: true
+          single-commit: true
