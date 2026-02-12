@@ -259,16 +259,35 @@ h4 {
 .timeline {
   margin-top: 0.8rem;
   display: grid;
-  gap: 1rem;
+  gap: 0;
 }
 
-.timeline article {
+.timeline--overlay {
   position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.timeline-card {
+  position: sticky;
+  top: 5.4rem;
   padding: 1rem 1rem 0.95rem 1.4rem;
   border-radius: 14px;
   border: 1px solid rgba(30, 54, 74, 0.14);
   background: rgba(255, 255, 255, 0.86);
-  animation-delay: calc(var(--order, 0) * 100ms);
+  box-shadow: 0 16px 28px -26px rgba(14, 29, 42, 0.68);
+  z-index: calc(20 + var(--stack-index, 0));
+  opacity: 0;
+  transform: translateY(42px) scale(0.96);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.timeline-card + .timeline-card {
+  margin-top: 3rem;
+}
+
+.timeline-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .timeline-company {
@@ -318,7 +337,6 @@ li + li {
 }
 
 .reveal,
-.timeline article,
 .certificate-badge {
   animation-name: reveal-up;
   animation-duration: 640ms;
@@ -380,5 +398,13 @@ li + li {
   .skills-grid,
   .split-layout {
     grid-template-columns: 1fr;
+  }
+
+  .timeline-card {
+    top: 4.5rem;
+  }
+
+  .timeline-card + .timeline-card {
+    margin-top: 2.3rem;
   }
 }
