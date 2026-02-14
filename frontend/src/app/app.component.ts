@@ -28,6 +28,13 @@ interface CompanyVisual {
   tint: string;
 }
 
+interface CodeRainColumn {
+  left: number;
+  duration: number;
+  delay: number;
+  opacity: number;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,6 +44,19 @@ export class AppComponent implements OnInit {
   portfolio: PortfolioData | null = null;
   loading = true;
   error = '';
+  readonly codeRainText = 'Chutipong Jarensawat Software Engineer';
+  readonly codeRainLines = Array.from({ length: 9 });
+  readonly codeRainColumns: CodeRainColumn[] = [
+    { left: 6, duration: 16, delay: -3, opacity: 0.2 },
+    { left: 16, duration: 18, delay: -8, opacity: 0.25 },
+    { left: 27, duration: 14, delay: -4, opacity: 0.18 },
+    { left: 38, duration: 17, delay: -11, opacity: 0.22 },
+    { left: 49, duration: 15, delay: -6, opacity: 0.24 },
+    { left: 60, duration: 19, delay: -9, opacity: 0.2 },
+    { left: 71, duration: 13, delay: -5, opacity: 0.22 },
+    { left: 82, duration: 18, delay: -2, opacity: 0.18 },
+    { left: 92, duration: 16, delay: -10, opacity: 0.23 }
+  ];
   private readonly toolVisualCache: Record<string, ToolVisual> = {};
   private readonly companyVisualCache: Record<string, CompanyVisual> = {};
 

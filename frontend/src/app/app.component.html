@@ -1,13 +1,24 @@
 <div class="portfolio-shell" *ngIf="portfolio as data; else stateBlock">
   <div class="bg-orb orb-coral"></div>
   <div class="bg-orb orb-mint"></div>
+  <div class="bg-code-rain" aria-hidden="true">
+    <div
+      class="code-column"
+      *ngFor="let column of codeRainColumns"
+      [style.--column-left]="column.left + '%'"
+      [style.--fall-duration]="column.duration + 's'"
+      [style.--fall-delay]="column.delay + 's'"
+      [style.--column-opacity]="column.opacity"
+    >
+      <span *ngFor="let _ of codeRainLines">{{ codeRainText }}</span>
+    </div>
+  </div>
   <div class="bg-grid"></div>
 
   <header class="hero reveal">
     <div
       class="hero__content"
       [class.hero__content--photo-bg]="data.profile.photo"
-      [style.--hero-bg-image]="data.profile.photo ? 'url(' + data.profile.photo + ')' : 'none'"
     >
       <p class="eyebrow">Software Engineer (Fullstack)</p>
       <h1>{{ data.profile.name }}</h1>
