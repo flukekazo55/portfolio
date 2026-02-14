@@ -1,0 +1,181 @@
+{
+  "profile": {
+    "name": "Chutipong Jarernsawat",
+    "photo": "assets/profile.jpg",
+    "role": "Software Engineer (Fullstack)",
+    "tagline": "Building scalable business platforms with modern DevOps and cloud-native workflows.",
+    "summary": "Fullstack Developer with 5+ years of experience delivering scalable web applications and backend services using Angular, NestJS, C#, and Golang. Experienced in event-driven integration with Confluent Kafka (designing and maintaining producers/consumers across multiple topics) and building reliable delivery pipelines with GitLab CI, Docker, Jenkins, and Argo CD for GitOps-based Kubernetes deployments. Focused on performance optimization, seamless frontend-backend collaboration, and solving complex problems in agile environments.",
+    "location": "Bangkok, Thailand",
+    "email": "chutipong.jarernsawat@gmail.com",
+    "phone": "(+66) 85 095 1898",
+    "linkedin": "https://www.linkedin.com/in/chutipong-jarernsawat-a47554222/"
+  },
+  "skills": {
+    "personal": [
+      "Teamwork",
+      "Adaptability",
+      "Interpersonal communication"
+    ],
+    "programming": {
+      "languages": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "Database (SQL, NoSQL)",
+        "C#",
+        "Golang"
+      ],
+      "languageDetails": [
+        {
+          "language": "HTML",
+          "tools": [
+            "Angular Templates",
+            "Responsive UI"
+          ]
+        },
+        {
+          "language": "CSS/SCSS",
+          "tools": [
+            "SCSS",
+            "Flexbox",
+            "Grid Layout"
+          ]
+        },
+        {
+          "language": "JavaScript",
+          "tools": [
+            "Node.js",
+            "REST APIs"
+          ]
+        },
+        {
+          "language": "TypeScript",
+          "tools": [
+            "Angular",
+            "NestJS"
+          ]
+        },
+        {
+          "language": "Database (SQL, NoSQL)",
+          "tools": [
+            "SQL Server",
+            "PostgreSQL",
+            "MongoDB"
+          ]
+        },
+        {
+          "language": "C#",
+          "tools": [
+            "ASP.NET Core",
+            ".NET 6",
+            "Xamarin"
+          ]
+        },
+        {
+          "language": "Golang",
+          "tools": [
+            "Confluent Kafka"
+          ]
+        },
+        {
+          "language": "DevOps",
+          "tools": [
+            "Docker",
+            "Kubernetes",
+            "Jenkins",
+            "Argo CD"
+          ]
+        }
+      ],
+      "frameworks": [
+        "Agile",
+        "Angular (TypeScript)",
+        "NestJS (TypeScript)",
+        "ASP.NET (C#)",
+        ".NET (C#)"
+      ],
+      "others": [
+        "Hyperledger Fabric",
+        "Linux commands",
+        "Version Control (Git)",
+        "Project Management (Jira)"
+      ]
+    }
+  },
+  "experience": [
+    {
+      "title": "Full Stack Developer (Mid-Level)",
+      "company": "Thai Beverage Public Company Limited",
+      "period": "July 2025 - Present",
+      "bullets": [
+        "Built business systems on Angular (UI) with Golang / .NET 6 services for Sales Order processing and related product workflows.",
+        "Implemented shipping document management and service integrations using Golang APIs.",
+        "Operated Confluent Kafka pipelines (producer/consumer) for cross-service communication and data synchronization.",
+        "Maintained and optimized GitLab CI/CD for containerized deployments on Kubernetes using Docker, Harbor, and Argo CD."
+      ]
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "MSC Sittipol Co., Ltd.",
+      "period": "July 2023 - June 2025",
+      "bullets": [
+        "Built a bank land asset management web system with Angular.",
+        "Built a gas station log management web system with Angular.",
+        "Built a bank business and customer document management web system with Angular."
+      ]
+    },
+    {
+      "title": "Software Developer (Fullstack)",
+      "company": "Sirisoft Public Company Limited",
+      "period": "Jan 2022 - Jun 2023",
+      "bullets": [
+        "Created a web platform for rubber trading data management using Angular and NestJS.",
+        "Managed and maintained Oracle Blockchain for rubber trading data workflows.",
+        "Developed CI/CD pipelines to validate source code and deploy with Docker, Kubernetes, Jenkins, Argo CD, and Red Hat tooling."
+      ]
+    },
+    {
+      "title": "Software Developer (Fullstack)",
+      "company": "Beko Thai Co., Ltd.",
+      "period": "Apr 2021 - Jan 2022",
+      "bullets": [
+        "Created an internal employee data management system with Angular and .NET Core 6.",
+        "Created an after-sales and product warranty management system with Angular and .NET Core 6.",
+        "Built an Android application for warehouse product counting and management with Xamarin."
+      ]
+    }
+  ],
+  "internship": [
+    {
+      "title": "System Administrator",
+      "company": "ClickNext Co., Ltd.",
+      "period": "Jul 2020 - Oct 2020",
+      "bullets": [
+        "Managed servers using Terraform and Ansible with Docker, Kubernetes, GitLab, and ELK Stack.",
+        "Created Jenkins pipelines for CI/CD usage."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Burapha University",
+      "degree": "Software Engineering",
+      "period": "July 2017 - April 2021",
+      "gpa": "3.78",
+      "bullets": [
+        "Focused on teamwork alongside Agile software development processes.",
+        "Relevant coursework: Object-oriented Programming, Data Structures, Algorithms, and Database Development."
+      ]
+    }
+  ],
+  "certificates": [
+    "JavaScript Certification",
+    "Problem Solving (Basic) Certificate",
+    "Angular (Basic) Certificate",
+    "Angular (Intermediate) Certificate",
+    "SQL (Basic) Certificate",
+    "SQL (Intermediate) Certificate",
+    "SQL (Advanced) Certificate"
+  ]
+}
