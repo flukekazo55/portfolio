@@ -1,151 +1,291 @@
 <div class="portfolio-shell" *ngIf="portfolio as data; else stateBlock">
-  <div class="bg-orb orb-coral"></div>
-  <div class="bg-orb orb-mint"></div>
-  <div class="bg-grid"></div>
+  <a id="top"></a>
 
-  <header class="hero reveal">
-    <div class="hero__content">
-      <div class="hero__photo-wrap" *ngIf="data.profile.photo">
-        <img class="hero__photo" [src]="data.profile.photo" [alt]="data.profile.name + ' profile photo'" />
-      </div>
-      <p class="eyebrow">Software Engineer (Fullstack)</p>
-      <h1>{{ data.profile.name }}</h1>
-      <h2>{{ data.profile.role }}</h2>
-      <p class="tagline">{{ data.profile.tagline }}</p>
+  <nav class="topbar no-print">
+    <a class="topbar__brand" href="#top">TERMINAL.EXE</a>
 
-      <div class="hero__meta">
-        <div class="meta-item">
-          <span class="meta-label">Experience</span>
-          <span class="meta-value">{{ experienceYears }}+ years</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Location</span>
-          <span class="meta-value">{{ data.profile.location }}</span>
-        </div>
-      </div>
-
-      <div class="contact-chips">
-        <a [href]="'mailto:' + data.profile.email">{{ data.profile.email }}</a>
-        <a [href]="'tel:' + data.profile.phone">{{ data.profile.phone }}</a>
-        <a [href]="data.profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
+    <div class="topbar__links">
+      <a *ngFor="let item of navigation" [href]="'#' + item.id">{{ item.label }}</a>
     </div>
 
-    <aside class="hero__card">
-      <p class="card-label">Profile Summary</p>
-      <p>{{ data.profile.summary }}</p>
+    <div class="topbar__actions">
+      <a
+        *ngFor="let link of contactLinks"
+        [href]="link.href"
+        [attr.target]="link.external ? '_blank' : null"
+        [attr.rel]="link.external ? 'noopener' : null"
+        [attr.aria-label]="link.label"
+      >
+        <span class="material-symbols-outlined">{{ link.icon }}</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="workspace">
+    <aside class="sidebar no-print">
+      <div class="sidebar__profile">
+        <div class="sidebar__avatar" *ngIf="data.profile.photo">
+          <img [src]="data.profile.photo" [alt]="data.profile.name + ' profile photo'" />
+        </div>
+        <h2>{{ data.profile.name }}</h2>
+        <p class="sidebar__role">{{ data.profile.role }}</p>
+        <p class="sidebar__location">{{ data.profile.location }}</p>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a *ngFor="let item of navigation" [href]="'#' + item.id">
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
+          <span>{{ item.label }}</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <a class="sidebar__cta" [href]="'mailto:' + data.profile.email">Hire Me</a>
+        <div class="sidebar__facts">
+          <span>{{ experienceYears }}+ years</span>
+          <span>{{ data.experience.length }} roles</span>
+        </div>
+      </div>
     </aside>
-  </header>
 
-  <main class="content">
-    <section class="panel reveal">
-      <div class="section-title">
-        <h3>Skills and Expertise</h3>
-      </div>
+    <main class="canvas">
+      <div class="canvas__inner">
+        <section class="hero reveal">
+          <span class="hero__ghost" aria-hidden="true">SOFTWARE DEVELOPER FULLSTACK / DEVOPS</span>
 
-      <div class="skills-grid">
-        <article class="skill-column">
-          <h4>Personal Skills</h4>
-          <ul>
-            <li *ngFor="let skill of data.skills.personal">{{ skill }}</li>
-          </ul>
-        </article>
+          <div class="hero__title">
+            <p class="section-kicker">
+              <span></span>
+              profile_boot
+            </p>
+            <h1>{{ terminalHandle }}<span>.JAR</span></h1>
+            <p class="hero__name">{{ data.profile.name }}</p>
+          </div>
 
-        <article class="skill-column">
-          <h4>Languages & Tools</h4>
-          <ul class="language-detail-list">
-            <li *ngFor="let detail of data.skills.programming.languageDetails">
-              <div class="language-detail">
-                <span class="language-name">{{ detail.language }}</span>
-                <div class="language-tools">
-                  <span class="tool-chip" *ngFor="let tool of detail.tools">{{ tool }}</span>
+          <div class="hero__split">
+            <div class="hero__copy">
+              <p class="hero__role">{{ data.profile.role }}</p>
+              <p class="hero__tagline">{{ data.profile.tagline }}</p>
+            </div>
+
+            <div class="hero__contacts">
+              <a
+                class="hero__contact"
+                *ngFor="let link of contactLinks"
+                [href]="link.href"
+                [attr.target]="link.external ? '_blank' : null"
+                [attr.rel]="link.external ? 'noopener' : null"
+              >
+                <span class="material-symbols-outlined">{{ link.icon }}</span>
+                <div>
+                  <span>{{ link.label }}</span>
+                  <strong>{{ link.value }}</strong>
                 </div>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--summary reveal" id="summary">
+          <div class="section__heading">
+            <p class="section-kicker">
+              <span></span>
+              system_init
+            </p>
+            <h3>Professional Summary</h3>
+          </div>
+
+          <article class="panel panel--summary">
+            <span class="panel__icon material-symbols-outlined">terminal</span>
+            <p class="summary-copy">{{ data.profile.summary }}</p>
+
+            <div class="summary-meta">
+              <div class="summary-meta__item">
+                <span>Experience</span>
+                <strong>{{ experienceYears }}+ years</strong>
               </div>
-            </li>
-          </ul>
-        </article>
+              <div class="summary-meta__item">
+                <span>Location</span>
+                <strong>{{ data.profile.location }}</strong>
+              </div>
+              <div class="summary-meta__item">
+                <span>Current Team</span>
+                <strong>{{ data.experience[0].company }}</strong>
+              </div>
+            </div>
+          </article>
+        </section>
 
-        <article class="skill-column">
-          <h4>Frameworks and Methods</h4>
-          <ul>
-            <li *ngFor="let framework of data.skills.programming.frameworks">{{ framework }}</li>
-          </ul>
-        </article>
+        <section class="section reveal" id="technical">
+          <div class="section__intro">
+            <p class="section-kicker section-kicker--tertiary">
+              <span></span>
+              tech_arsenal
+            </p>
+            <h3>Core Competencies</h3>
+          </div>
 
-        <article class="skill-column">
-          <h4>Other</h4>
-          <ul>
-            <li *ngFor="let tool of data.skills.programming.others">{{ tool }}</li>
-          </ul>
-        </article>
+          <div class="competency-grid">
+            <article
+              class="competency-card"
+              *ngFor="let card of competencyCards"
+              [ngClass]="'competency-card--' + card.tone"
+            >
+              <span class="material-symbols-outlined competency-card__icon">{{ card.icon }}</span>
+              <p class="competency-card__label">{{ card.label }}</p>
+              <p class="competency-card__value">{{ card.value }}</p>
+            </article>
+          </div>
+
+          <div class="chip-wall">
+            <span class="chip" *ngFor="let chip of skillChips">{{ chip }}</span>
+          </div>
+        </section>
+
+        <section class="section reveal" id="experience">
+          <div class="section__intro">
+            <p class="section-kicker section-kicker--primary">
+              <span></span>
+              runtime_logs
+            </p>
+            <h3>Professional Experience</h3>
+          </div>
+
+          <div class="timeline">
+            <article
+              #experienceCard
+              class="timeline-entry"
+              *ngFor="let item of data.experience; let i = index"
+              [attr.data-index]="i"
+              [class.is-visible]="visibleExperience.has(i)"
+            >
+              <div class="timeline-entry__period">{{ item.period }}</div>
+
+              <div class="timeline-entry__body">
+                <h4>{{ item.title }}</h4>
+                <p class="timeline-entry__company">{{ item.company }}</p>
+                <ul class="detail-list">
+                  <li *ngFor="let point of item.bullets">{{ point }}</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section--dual reveal">
+          <article class="panel" id="education">
+            <div class="panel__header">
+              <p class="section-kicker section-kicker--accent">
+                <span></span>
+                base_knowledge
+              </p>
+              <h3>Education</h3>
+            </div>
+
+            <div class="entry-stack">
+              <div class="entry-block" *ngFor="let school of data.education">
+                <h4>{{ school.institution }}</h4>
+                <p class="entry-block__subline">{{ school.degree }}</p>
+                <p class="entry-block__period">{{ school.period }} | GPA {{ school.gpa }}</p>
+                <ul class="detail-list">
+                  <li *ngFor="let point of school.bullets">{{ point }}</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <p class="section-kicker section-kicker--secondary">
+                <span></span>
+                early_stage
+              </p>
+              <h3>Internship</h3>
+            </div>
+
+            <div class="entry-stack">
+              <div class="entry-block" *ngFor="let item of data.internship">
+                <h4>{{ item.title }}</h4>
+                <p class="entry-block__subline">{{ item.company }}</p>
+                <p class="entry-block__period">{{ item.period }}</p>
+                <ul class="detail-list">
+                  <li *ngFor="let point of item.bullets">{{ point }}</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="section section--dual reveal">
+          <article class="panel" id="certs">
+            <div class="panel__header">
+              <p class="section-kicker section-kicker--tertiary">
+                <span></span>
+                verified_stats
+              </p>
+              <h3>Certifications</h3>
+            </div>
+
+            <div class="certificate-wall">
+              <span class="certificate-badge" *ngFor="let certificate of data.certificates; let i = index" [style.--order]="i">
+                {{ certificate }}
+              </span>
+            </div>
+          </article>
+
+          <article class="panel" id="contact">
+            <div class="panel__header">
+              <p class="section-kicker section-kicker--primary">
+                <span></span>
+                signal_line
+              </p>
+              <h3>Contact</h3>
+            </div>
+
+            <p class="contact-copy">{{ data.profile.tagline }}</p>
+
+            <div class="contact-grid">
+              <a
+                class="contact-grid__item"
+                *ngFor="let link of contactLinks"
+                [href]="link.href"
+                [attr.target]="link.external ? '_blank' : null"
+                [attr.rel]="link.external ? 'noopener' : null"
+              >
+                <span class="material-symbols-outlined">{{ link.icon }}</span>
+                <div>
+                  <span>{{ link.label }}</span>
+                  <strong>{{ link.value }}</strong>
+                </div>
+              </a>
+            </div>
+
+            <div class="contact-location">
+              <span class="material-symbols-outlined">pin_drop</span>
+              <span>{{ data.profile.location }}</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="metric-strip reveal no-print">
+          <div class="metric-strip__item" *ngFor="let stat of dashboardStats">
+            <span class="metric-strip__label">{{ stat.label }}</span>
+            <strong class="metric-strip__value">{{ stat.value }}</strong>
+          </div>
+        </section>
+
+        <footer class="footer no-print">
+          <div class="footer__copy">© {{ currentYear }} {{ data.profile.name | uppercase }}</div>
+
+          <div class="footer__links">
+            <a [href]="'mailto:' + data.profile.email">Email</a>
+            <a [href]="'tel:' + data.profile.phone">Phone</a>
+            <a [href]="data.profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </footer>
       </div>
-    </section>
-
-    <section class="panel reveal">
-      <div class="section-title">
-        <h3>Work Experience</h3>
-      </div>
-      <div class="timeline timeline--overlay">
-        <article
-          #experienceCard
-          class="timeline-card"
-          *ngFor="let item of data.experience; let i = index"
-          [style.--order]="i"
-          [style.--stack-index]="i"
-          [attr.data-index]="i"
-          [class.is-visible]="visibleExperience.has(i)"
-        >
-          <h4>{{ item.title }}</h4>
-          <p class="timeline-company">{{ item.company }}</p>
-          <p class="timeline-period">{{ item.period }}</p>
-          <ul>
-            <li *ngFor="let point of item.bullets">{{ point }}</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="split-layout reveal">
-      <article class="panel">
-        <div class="section-title">
-          <h3>Internship</h3>
-        </div>
-        <div *ngFor="let item of data.internship">
-          <h4>{{ item.title }}</h4>
-          <p class="timeline-company">{{ item.company }}</p>
-          <p class="timeline-period">{{ item.period }}</p>
-          <ul>
-            <li *ngFor="let point of item.bullets">{{ point }}</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="panel">
-        <div class="section-title">
-          <h3>Education</h3>
-        </div>
-        <div *ngFor="let school of data.education">
-          <h4>{{ school.institution }}</h4>
-          <p class="timeline-company">{{ school.degree }}</p>
-          <p class="timeline-period">{{ school.period }} | GPA {{ school.gpa }}</p>
-          <ul>
-            <li *ngFor="let point of school.bullets">{{ point }}</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <section class="panel reveal">
-      <div class="section-title">
-        <h3>Certificates</h3>
-      </div>
-      <div class="certificate-wall">
-        <span class="certificate-badge" *ngFor="let certificate of data.certificates; let i = index" [style.--order]="i">
-          {{ certificate }}
-        </span>
-      </div>
-    </section>
-  </main>
+    </main>
+  </div>
 </div>
 
 <ng-template #stateBlock>

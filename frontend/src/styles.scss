@@ -1,11 +1,28 @@
 :root {
-  --bg-base: #f5faf7;
+  --bg-base: #060e20;
+  --surface-0: #091328;
+  --surface-1: #0f1930;
+  --surface-2: #141f38;
+  --text-primary: #dee5ff;
+  --text-muted: #a3aac4;
+  --text-dim: #6d758c;
+  --accent-primary: #85adff;
+  --accent-secondary: #69f6b8;
+  --accent-tertiary: #fbabff;
+  --accent-alert: #ff716c;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -15,15 +32,41 @@ body {
 }
 
 body {
-  font-family: "Kanit", "Segoe UI", Tahoma, sans-serif;
-  background: linear-gradient(170deg, #f7fbfa 0%, #eef7f5 44%, #eff3f8 100%);
-  color: #1f3548;
+  position: relative;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at top right, rgba(133, 173, 255, 0.14), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(105, 246, 184, 0.12), transparent 32%),
+    linear-gradient(180deg, #060e20 0%, #071226 100%);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Kanit", "Segoe UI", Tahoma, sans-serif;
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(163, 170, 196, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(163, 170, 196, 0.045) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 450, 'GRAD' 0, 'opsz' 24;
 }
