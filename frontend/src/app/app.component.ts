@@ -1,12 +1,10 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ExperienceEntry, PortfolioData } from './models/portfolio.model';
+import { Component, OnInit } from '@angular/core';
+import { PortfolioData } from './models/portfolio.model';
 import { PortfolioService } from './services/portfolio.service';
 
 interface NavigationItem {
   id: string;
   label: string;
-  icon: string;
 }
 
 interface ContactLink {
@@ -17,16 +15,20 @@ interface ContactLink {
   external?: boolean;
 }
 
-interface CompetencyCard {
-  label: string;
-  value: string;
-  icon: string;
-  tone: 'primary' | 'secondary' | 'tertiary' | 'alert';
+interface LanguageMeter {
+  name: string;
+  score: number;
 }
 
-interface DashboardStat {
+interface ShowcaseMetric {
   label: string;
   value: string;
+}
+
+interface CertificateCard {
+  name: string;
+  icon: string;
+  tone: 'sun' | 'rose' | 'ruby' | 'sky';
 }
 
 @Component({
@@ -34,36 +36,37 @@ interface DashboardStat {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit {
   readonly navigation: NavigationItem[] = [
-    { id: 'summary', label: 'Summary', icon: 'person' },
-    { id: 'technical', label: 'Competencies', icon: 'bolt' },
-    { id: 'experience', label: 'Experience', icon: 'work' },
-    { id: 'education', label: 'Education', icon: 'school' },
-    { id: 'certs', label: 'Certifications', icon: 'verified' },
-    { id: 'contact', label: 'Contact', icon: 'mail' }
+    { id: 'home', label: 'Home' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'education', label: 'Education' },
+    { id: 'contact', label: 'Contact' }
+  ];
+  readonly experienceSignposts = [
+    'CURRENT MISSION',
+    'PORTAL ERA',
+    'FULLSTACK ADVENTURE',
+    'FACTORY CORE',
+    'WHERE IT BEGAN'
   ];
   readonly currentYear = new Date().getFullYear();
 
   portfolio: PortfolioData | null = null;
   loading = true;
   error = '';
-  terminalHandle = '';
+  firstName = 'Developer';
   contactLinks: ContactLink[] = [];
-  competencyCards: CompetencyCard[] = [];
-  skillChips: string[] = [];
-  dashboardStats: DashboardStat[] = [];
-  visibleExperience = new Set<number>();
+  languageMeters: LanguageMeter[] = [];
+  frameworkChips: string[] = [];
+  toolChips: string[] = [];
+  personalSkills: string[] = [];
+  certificateCards: CertificateCard[] = [];
+  showcaseMetrics: ShowcaseMetric[] = [];
+  heroPills: string[] = [];
 
-  @ViewChildren('experienceCard') experienceCards!: QueryList<ElementRef<HTMLElement>>;
-
-  private experienceObserver: IntersectionObserver | null = null;
-  private experienceCardsChangeSub: Subscription | null = null;
-
-  constructor(
-    private readonly portfolioService: PortfolioService,
-    private readonly ngZone: NgZone
-  ) {}
+  constructor(private readonly portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioService.getPortfolio().subscribe({
@@ -79,84 +82,35 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.setupExperienceObserver();
-    this.experienceCardsChangeSub = this.experienceCards.changes.subscribe(() => {
-      this.setupExperienceObserver();
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.experienceObserver?.disconnect();
-    this.experienceCardsChangeSub?.unsubscribe();
-  }
-
   get experienceYears(): number {
-    if (!this.portfolio?.experience.length) {
+    if (!this.portfolio) {
       return 0;
     }
 
-    const firstProfessionalYear = this.getEarliestYear(this.portfolio.experience);
+    const periods = [...this.portfolio.experience, ...this.portfolio.internship].map((entry) => entry.period);
+    const firstProfessionalYear = this.getEarliestYear(periods);
     return Math.max(1, new Date().getFullYear() - firstProfessionalYear);
-  }
-
-  private setupExperienceObserver(): void {
-    if (!this.experienceCards?.length) {
-      return;
-    }
-
-    this.experienceObserver?.disconnect();
-
-    if (typeof IntersectionObserver === 'undefined') {
-      this.experienceCards.forEach((_, index) => {
-        this.visibleExperience.add(index);
-      });
-      return;
-    }
-
-    this.experienceObserver = new IntersectionObserver(
-      (entries) => {
-        this.ngZone.run(() => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            const index = Number((entry.target as HTMLElement).dataset['index']);
-            if (Number.isNaN(index)) {
-              return;
-            }
-
-            this.visibleExperience.add(index);
-            this.experienceObserver?.unobserve(entry.target);
-          });
-        });
-      },
-      {
-        threshold: 0.35,
-        rootMargin: '0px 0px -12% 0px'
-      }
-    );
-
-    this.experienceCards.forEach((card) => {
-      this.experienceObserver?.observe(card.nativeElement);
-    });
   }
 
   private hydrateViewModel(portfolio: PortfolioData): void {
     const detailTools = portfolio.skills.programming.languageDetails.flatMap((detail) => detail.tools);
-    const uniqueSkillChips = Array.from(
-      new Set([
-        ...portfolio.skills.programming.frameworks,
-        ...detailTools,
-        ...portfolio.skills.programming.others
-      ])
-    );
-    const primaryEducation = portfolio.education[0];
-    const phoneNumber = portfolio.profile.phone.replace(/[^\d+]/g, '');
+    const uniqueTools = Array.from(new Set([...detailTools, ...portfolio.skills.programming.others]));
+    const primaryEducation = portfolio.education[0] ?? null;
 
-    this.visibleExperience = new Set<number>();
-    this.terminalHandle = this.createTerminalHandle(portfolio.profile.name);
+    this.firstName = portfolio.profile.name.trim().split(/\s+/)[0] || 'Developer';
+    this.personalSkills = portfolio.skills.personal;
+    this.frameworkChips = portfolio.skills.programming.frameworks;
+    this.languageMeters = this.createLanguageMeters(portfolio.skills.programming.languages).slice(0, 6);
+    this.toolChips = uniqueTools;
+    this.heroPills = this.frameworkChips
+      .slice(0, 2)
+      .map((item) => item.replace(/\(.+?\)/g, '').trim())
+      .filter((item) => !!item);
+
+    if (this.heroPills.length < 2) {
+      this.heroPills = [...this.heroPills, 'Cloud Native'].slice(0, 2);
+    }
+
     this.contactLinks = [
       {
         href: `mailto:${portfolio.profile.email}`,
@@ -165,7 +119,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         icon: 'mail'
       },
       {
-        href: `tel:${phoneNumber}`,
+        href: this.toPhoneHref(portfolio.profile.phone),
         label: 'Phone',
         value: portfolio.profile.phone,
         icon: 'call'
@@ -178,67 +132,83 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         external: true
       }
     ];
-    this.competencyCards = [
-      {
-        label: 'Personal Skills',
-        value: portfolio.skills.personal.join(' / '),
-        icon: 'psychology_alt',
-        tone: 'secondary'
-      },
-      {
-        label: 'Languages & Runtime',
-        value: portfolio.skills.programming.languages.join(' / '),
-        icon: 'code',
-        tone: 'primary'
-      },
-      {
-        label: 'Frameworks & Methods',
-        value: portfolio.skills.programming.frameworks.join(' / '),
-        icon: 'deployed_code',
-        tone: 'tertiary'
-      },
-      {
-        label: 'Platform & Tooling',
-        value: this.selectChips(uniqueSkillChips, [
-          'Docker',
-          'Kubernetes',
-          'Jenkins',
-          'Argo CD',
-          'Confluent Kafka',
-          'SQL Server',
-          'PostgreSQL',
-          'MongoDB'
-        ]),
-        icon: 'developer_board',
-        tone: 'alert'
-      }
-    ];
-    this.skillChips = uniqueSkillChips;
-    this.dashboardStats = [
-      { label: 'Experience', value: `${this.experienceYears}+ YEARS` },
-      { label: 'Professional Roles', value: `${portfolio.experience.length}` },
+
+    this.certificateCards = portfolio.certificates.map((certificate, index) => this.mapCertificate(certificate, index));
+    this.showcaseMetrics = [
+      { label: 'Experience', value: `${this.experienceYears}+ Years` },
+      { label: 'Professional Roles', value: `${portfolio.experience.length + portfolio.internship.length}` },
       { label: 'Certificates', value: `${portfolio.certificates.length}` },
-      { label: 'GPA', value: primaryEducation ? primaryEducation.gpa : 'N/A' }
+      { label: 'GPA', value: primaryEducation?.gpa || 'N/A' }
     ];
   }
 
-  private createTerminalHandle(name: string): string {
-    const [firstName] = name.trim().split(/\s+/);
-    return (firstName || name).toUpperCase().replace(/[^A-Z0-9]+/g, '_');
+  private toPhoneHref(phone: string): string {
+    return `tel:${phone.replace(/[^\d+]/g, '')}`;
   }
 
-  private getEarliestYear(entries: ExperienceEntry[]): number {
+  private createLanguageMeters(languages: string[]): LanguageMeter[] {
+    return languages.map((language) => ({
+      name: language,
+      score: this.scoreByLanguage(language)
+    }));
+  }
+
+  private scoreByLanguage(language: string): number {
+    const normalized = language.toLowerCase();
+
+    if (normalized.includes('typescript')) {
+      return 95;
+    }
+    if (normalized.includes('javascript')) {
+      return 98;
+    }
+    if (normalized.includes('golang') || normalized.includes('go')) {
+      return 84;
+    }
+    if (normalized.includes('c#') || normalized.includes('.net')) {
+      return 88;
+    }
+    if (normalized.includes('database') || normalized.includes('sql')) {
+      return 90;
+    }
+    if (normalized.includes('css') || normalized.includes('html')) {
+      return 93;
+    }
+
+    return 82;
+  }
+
+  private mapCertificate(certificate: string, index: number): CertificateCard {
+    const normalized = certificate.toLowerCase();
+
+    if (normalized.includes('javascript')) {
+      return { name: certificate, icon: 'javascript', tone: 'sun' };
+    }
+    if (normalized.includes('problem')) {
+      return { name: certificate, icon: 'psychology', tone: 'rose' };
+    }
+    if (normalized.includes('angular')) {
+      return { name: certificate, icon: 'change_history', tone: 'ruby' };
+    }
+    if (normalized.includes('sql')) {
+      return { name: certificate, icon: 'database', tone: 'sky' };
+    }
+
+    const fallbackTones: CertificateCard['tone'][] = ['sun', 'rose', 'ruby', 'sky'];
+    return {
+      name: certificate,
+      icon: 'verified',
+      tone: fallbackTones[index % fallbackTones.length]
+    };
+  }
+
+  private getEarliestYear(periods: string[]): number {
     const currentYear = new Date().getFullYear();
-    const years = entries
-      .flatMap((entry) => entry.period.match(/\b(?:19|20)\d{2}\b/g) ?? [])
+    const years = periods
+      .flatMap((period) => period.match(/\b(?:19|20)\d{2}\b/g) ?? [])
       .map((year) => Number(year))
       .filter((year) => !Number.isNaN(year));
 
     return years.length ? Math.min(...years) : currentYear;
-  }
-
-  private selectChips(source: string[], labels: string[]): string {
-    const picked = labels.filter((label) => source.includes(label));
-    return picked.length ? picked.join(' / ') : source.slice(0, 6).join(' / ');
   }
 }
