@@ -6,3 +6,4 @@ launcher/obj/
 launcher/dist/*.pdb
 npm-debug.log*
 *.log
+.vercel/

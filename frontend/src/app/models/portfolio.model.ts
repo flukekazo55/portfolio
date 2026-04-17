@@ -40,11 +40,16 @@ export interface Profile {
   linkedin: string;
 }
 
+export interface Certificate {
+  name: string;
+  link?: string;
+}
+
 export interface PortfolioData {
   profile: Profile;
   skills: Skills;
   experience: ExperienceEntry[];
   internship: ExperienceEntry[];
   education: EducationEntry[];
-  certificates: string[];
+  certificates: Certificate[];
 }

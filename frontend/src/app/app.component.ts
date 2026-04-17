@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioData } from './models/portfolio.model';
+import { Certificate, PortfolioData } from './models/portfolio.model';
 import { PortfolioService } from './services/portfolio.service';
 
 interface NavigationItem {
@@ -27,6 +27,7 @@ interface ShowcaseMetric {
 
 interface CertificateCard {
   name: string;
+  link?: string;
   icon: string;
   tone: 'sun' | 'rose' | 'ruby' | 'sky';
 }
@@ -178,25 +179,26 @@ export class AppComponent implements OnInit {
     return 82;
   }
 
-  private mapCertificate(certificate: string, index: number): CertificateCard {
-    const normalized = certificate.toLowerCase();
+  private mapCertificate(certificate: Certificate, index: number): CertificateCard {
+    const normalized = certificate.name.toLowerCase();
 
     if (normalized.includes('javascript')) {
-      return { name: certificate, icon: 'javascript', tone: 'sun' };
+      return { name: certificate.name, link: certificate.link, icon: 'javascript', tone: 'sun' };
     }
     if (normalized.includes('problem')) {
-      return { name: certificate, icon: 'psychology', tone: 'rose' };
+      return { name: certificate.name, link: certificate.link, icon: 'psychology', tone: 'rose' };
     }
     if (normalized.includes('angular')) {
-      return { name: certificate, icon: 'change_history', tone: 'ruby' };
+      return { name: certificate.name, link: certificate.link, icon: 'change_history', tone: 'ruby' };
     }
     if (normalized.includes('sql')) {
-      return { name: certificate, icon: 'database', tone: 'sky' };
+      return { name: certificate.name, link: certificate.link, icon: 'database', tone: 'sky' };
     }
 
     const fallbackTones: CertificateCard['tone'][] = ['sun', 'rose', 'ruby', 'sky'];
     return {
-      name: certificate,
+      name: certificate.name,
+      link: certificate.link,
       icon: 'verified',
       tone: fallbackTones[index % fallbackTones.length]
     };

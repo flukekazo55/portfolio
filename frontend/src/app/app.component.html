@@ -187,13 +187,20 @@
         <article class="panel panel--glass">
           <h3>Magic Badges & Certs</h3>
           <div class="cert-grid">
-            <div class="cert-card" *ngFor="let cert of certificateCards" [ngClass]="'cert-card--' + cert.tone">
+            <a
+              class="cert-card"
+              *ngFor="let cert of certificateCards"
+              [ngClass]="['cert-card--' + cert.tone, cert.link ? 'cert-card--link' : 'cert-card--nolink']"
+              [attr.href]="cert.link || null"
+              [attr.target]="cert.link ? '_blank' : null"
+              [attr.rel]="cert.link ? 'noopener noreferrer' : null"
+            >
               <span class="material-symbols-outlined">{{ cert.icon }}</span>
               <div>
                 <p>{{ cert.name }}</p>
-                <small>Verified Achievement</small>
+                <small>{{ cert.link ? 'View Certificate' : 'Verified Achievement' }}</small>
               </div>
-            </div>
+            </a>
           </div>
         </article>
       </div>

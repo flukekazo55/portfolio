@@ -68,6 +68,30 @@ After pushing to GitHub:
 4. Wait for workflow `Deploy Portfolio to GitHub Pages` to finish
 4. Open: `https://flukekazo55.github.io/portfolio/`
 
+## Deploy to Vercel
+
+This repository is configured for Vercel with:
+
+- `vercel.json` at repo root
+- install command: `npm run install:all`
+- build command: `npm run build`
+- output directory: `frontend/dist/frontend`
+
+### Vercel Dashboard (recommended)
+
+1. Push your latest commit to GitHub.
+2. In Vercel, click **Add New Project** and import this repo.
+3. Keep the project root at repository root.
+4. Deploy.
+
+### Vercel CLI
+
+```bash
+npm i -g vercel
+vercel
+vercel --prod
+```
+
 ## Update portfolio content
 
 Edit:

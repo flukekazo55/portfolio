@@ -683,6 +683,21 @@
   border-radius: 0.8rem;
   border-left: 4px solid transparent;
   background: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cert-card--link {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.cert-card--link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(23, 34, 46, 0.12);
+}
+
+.cert-card--nolink {
+  cursor: default;
 }
 
 .cert-card .material-symbols-outlined {

@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Chutipong Jarernsawat",
-    "photo": "assets/profile.png",
+    "photo": "assets/profile.svg",
     "role": "Software Engineer (Fullstack)",
     "tagline": "Building scalable business platforms with modern DevOps and cloud-native workflows.",
     "summary": "Fullstack Developer with 5+ years of experience delivering scalable web applications and backend services using Angular, NestJS, C#, and Golang. Experienced in event-driven integration with Confluent Kafka (designing and maintaining producers/consumers across multiple topics) and building reliable delivery pipelines with GitLab CI, Docker, Jenkins, and Argo CD for GitOps-based Kubernetes deployments. Focused on performance optimization, seamless frontend-backend collaboration, and solving complex problems in agile environments.",
@@ -170,12 +170,33 @@
     }
   ],
   "certificates": [
-    "JavaScript Certification",
-    "Problem Solving (Basic) Certificate",
-    "Angular (Basic) Certificate",
-    "Angular (Intermediate) Certificate",
-    "SQL (Basic) Certificate",
-    "SQL (Intermediate) Certificate",
-    "SQL (Advanced) Certificate"
+    {
+      "name": "JavaScript Certification",
+      "link": "https://www.codingame.com/certification/CKqShmPi512qXLqqeO6MyA"
+    },
+    {
+      "name": "Problem Solving (Basic) Certificate",
+      "link": "https://www.hackerrank.com/certificates/a89bcb3483ab"
+    },
+    {
+      "name": "Angular (Basic) Certificate",
+      "link": "https://www.hackerrank.com/certificates/2bcaf82d2953"
+    },
+    {
+      "name": "Angular (Intermediate) Certificate",
+      "link": "https://www.hackerrank.com/certificates/1af5f28fe06f"
+    },
+    {
+      "name": "SQL (Basic) Certificate",
+      "link": "https://www.hackerrank.com/certificates/852432abf578"
+    },
+    {
+      "name": "SQL (Intermediate) Certificate",
+      "link": "https://www.hackerrank.com/certificates/e3136219da9e"
+    },
+    {
+      "name": "SQL (Advanced) Certificate",
+      "link": "https://www.hackerrank.com/certificates/45c0fd6b1fa7"
+    }
   ]
 }
